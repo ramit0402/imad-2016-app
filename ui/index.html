@@ -21,6 +21,8 @@
 	<!--BOOTSTRAP JAVASCRIPT-->
 	<script src="js/bootstrap.js"></script>
 	
+	<!--HTML JAVASCRIPT-->
+	<script src="js/app.js"></script>
 </head>
 	
 <body>
@@ -42,12 +44,12 @@
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<!--<li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>-->----
-					<li><a href="/">Home</a></li>
-					<li><a href="sec/myarticle">My Articles</a></li>
+					<li><a id="home" href="#homeSection">Home</a></li>
+					<li><a id="article" href="#articleSection">My Articles</a></li>
 					<li class="dropdown">
 						<a id="home" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Browse <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="sec/trending"><span class="btn-sm glyphicon glyphicon-headphones" aria-hidden="true"></span>    Trending</a></li>
+							<li><button onclick="window.location.href='sec/trending'"><span class="btn-sm glyphicon glyphicon-headphones" aria-hidden="true"></span>    Trending</button></li>
 							<li><a href="#featuredSection"><span class="btn-sm glyphicon glyphicon-headphones" aria-hidden="true"></span>    Featured </a></li>
 							<li><a href="#newSection"><span class="btn-sm glyphicon glyphicon-headphones" aria-hidden="true"></span>    New Articles</a></li>
 							<li><a href="#specialSection"><span class="btn-sm glyphicon glyphicon-headphones" aria-hidden="true"></span>    This Weeks Special</a></li>
@@ -321,24 +323,6 @@
 		</div>
 	</div>
     <!--CONTAINER END-->
-    <footer>
-        <!-- Social Footer, Colour Matching Icons -->
-<!-- Include Font Awesome Stylesheet in Header -->
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
-<!-- // -->
-<div class="container">
-<h3>Multi-Coloured</h3>
-    <hr>
-    <div class="text-center center-block">
-        <p class="txt-railway">- BLOGS ONLINE -</p>
-            <a href="https://www.facebook.com/bootsnipp"><i id="social-fb" class="fa fa-facebook-square fa-3x social"></i></a>
-            <a href="https://twitter.com/bootsnipp"><i id="social-tw" class="fa fa-twitter-square fa-3x social"></i></a>
-            <a href="https://plus.google.com/+Bootsnipp-page"><i id="social-gp" class="fa fa-google-plus-square fa-3x social"></i></a>
-            <a href="mailto:bootsnipp@gmail.com"><i id="social-em" class="fa fa-envelope-square fa-3x social"></i></a>
-    </div>
-</div>
-    </footer>
     <script type="text/javascript" src="js/main.js">
     </script>
 </body>
