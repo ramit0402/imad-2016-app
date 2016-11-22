@@ -1,6 +1,6 @@
 function loadLoginForm () {
     var loginHtml = `
-    <div class="col-md-4 col-md-offset-3" style="border:1px solid black">
+    <div class="col-md-4 col-md-offset-3" style="border:1px solid black" >
         <h3>Login/Register</h3>
         <label for="username" class="col-sm-3 control-label">Username</label>
         <input type="text" class="form-control" id="username"  />
@@ -8,8 +8,9 @@ function loadLoginForm () {
         <label for="password" class="col-sm-3 control-label">Password</label>
         <input type="password" class="form-control" id="password" />
         <br/>
-        <input type="submit" id="login_btn" value="Login" />
-        <input type="submit" id="register_btn" value="Register" />
+        <input type="submit" class="btn btn-default" id="login_btn" value="Login" />
+        <input type="submit" class="btn btn-default" id="register_btn" value="Register" />
+        </br>
         </div>
         `;
     document.getElementById('login_area').innerHTML = loginHtml;
