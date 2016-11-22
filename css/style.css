@@ -182,6 +182,9 @@ h3{
     color: white;
 }
 
+footer a:hover{
+    font-size:46px;
+}
 
 /* Caruosel */
 .carousel-inner .item img{
