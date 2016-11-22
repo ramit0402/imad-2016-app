@@ -137,7 +137,144 @@ app.get('/user/:username', function(req, res){
 });	
 
 
+app.get('/login.html', function(req, res){
+    res.sendFile(path.join(__dirname, 'ui', 'login.html'));
+});
 
+app.post('/login', function (req, res) {
+   var username = req.body.username;
+   var password = req.body.password;
+   
+   pool.query('SELECT * FROM "users" WHERE username = $1', [username], function (err, result) {
+      if (err) {
+          res.status(500).send(err.toString());
+      } else {
+          if (result.rows.length === 0) {
+              res.status(403).send('username/password is invalid');
+          } else {
+              // Match the password
+              var dbString = result.rows[0].password;
+              var salt = dbString.split('$')[2];
+              var hashedPassword = hash(password, salt); // Creating a hash based on the password submitted and the original salt
+              if (hashedPassword === dbString) {
+                
+                // Set the session
+                req.session.auth = {userId: result.rows[0].id};
+                req.session.username = req.body.username;
+                console.log(req.session.auth);
+                console.log(req.session.username);
+                // set cookie with a session id
+                // internally, on the server side, it maps the session id to an object
+                // { auth: {userId }}
+                
+                res.send('credentials correct!');
+                
+              } else {
+                res.status(403).send('username/password is invalid');
+              }
+          }
+      }
+   });
+});
+
+app.get('/check-login', function (req, res) {
+   if (req.session && req.session.auth && req.session.auth.userId) {
+       // Load the user object
+       pool.query('SELECT * FROM "users" WHERE id = $1', [req.session.auth.userId], function (err, result) {
+           if (err) {
+              res.status(500).send(err.toString());
+           } else {
+              res.send(result.rows[0].username);    
+           }
+       });
+   } else {
+       res.status(400).send('You are not logged in');
+   }
+});
+
+app.get('/logout', function (req, res) {
+   delete req.session.auth;
+   delete req.session.username;
+   res.send('<html><body>Logged out!<br/><br/><a href="/">Back to home</a></body></html>');
+});
+
+
+// Make this into a app.get !!!
+function get_comments(){
+     pool.query('SELECT * from comments ORDER BY comment_id desc', function(err, results){
+        if (err){
+            return(err.toString());
+        } else {
+                comments = results.rows;
+        }
+    });
+}
+
+function get_posts(){
+    pool.query('SELECT * from posts ORDER BY post_id DESC', function(err, results){
+        if (err){
+            return(err.toString());
+        } else {
+            if (results.rows.length === 0 ) {
+                return(err.toString());
+            } else {
+                posts = results.rows;
+            }
+        }
+    });
+}
+
+app.get('/getUser/:username', function (req, res) {
+   var username = req.params.username;
+   pool.query("SELECT username, displaypic FROM users WHERE username=$1", [username], function (err, result) {
+      if (err) {
+          res.status(500).send(err.toString());
+      } else {
+          res.send(result.rows[0]);
+      }
+   });
+});
+
+function get_users() {
+    pool.query('SELECT username, displaypic from users ', function(err, results){
+        if (err){
+            return(err.toString());
+        } else {
+            if (results.rows.length === 0 ) {
+                // return(err.toString());
+            } else {
+                users = results.rows;
+            }
+        }
+    });
+}
+
+function findUser(username) {
+    get_users();
+    console.log("username = "+username);
+    var found = null;
+    for (var i = 0; i < users.length; i++) {
+        var element = users[i];
+
+        if (element.username == username) {
+           found = element;
+       } 
+    }
+    console.log(found);
+    return found;
+}
+
+function testdb(){
+  var config = {
+    user: 'ramit0402',
+    database: 'ramit0402',
+    host: 'db.imad.hasura-app.io',
+    port: '5432',
+    password: process.env.DB_PASSWORD
+    ssl: true
+  };
+  return config;
+}
 function createTemplateArticle(data) {
     
     var title = data.title;
