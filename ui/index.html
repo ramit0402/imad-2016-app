@@ -61,8 +61,8 @@
 					<li><a href="#browseSection">Search</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a id="login" href="#loginSection">Login</a></li>
-					<li><a id="signup" href="#signupSection">Sign Up</a></li>
+					<a id="loginnavbar" data-toggle="modal" data-target="#login-modal" href="#">Login/Register</a>
+					<a id="logoutnavbar" onclick="logout()" href="">Logout</a>
 				</ul>
 			</div><!-- /.navbar-collapse -->
 		</div><!-- /.container-fluid -->
@@ -322,6 +322,59 @@
 			</div>
 		</div>
 	</div>
+	
+	<!-- Ask to login/register -->
+    <!-- Modal -->
+    <div id="login-modal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="container-fluid">
+                 <div class="row">
+                     <div class="">
+                            <div class="form-body">
+                                <ul class="nav nav-tabs final-login">
+                                    <li class="active"><a class="btn btn-sm" data-toggle="tab" href="#sectionA">Existing User</a></li>
+                                    <li><a class="btn btn-sm" data-toggle="tab" href="#sectionB">New User</a></li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div id="sectionA" class="tab-pane fade in active">
+                                        <div class="innter-form">
+                                            <form class="sa-innate-form" method="post">
+                                                <label>Username</label>
+                                                <input type="text" id="username">
+                                                <label>Password</label>
+                                                <input type="password" id="password">
+                                                <button type="button" class="btn btn-info btn-sm" id="login_btn">Sign In</button>
+                                            </form>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div id="sectionB" class="tab-pane fade">
+                                        <div class="innter-form">
+                                            <form class="sa-innate-form" method="post">
+                                                <label>New Username</label>
+                                                <input type="text" id="new_username">
+                                                <label>New Password</label>
+                                                <input type="password" id="new_password">
+                                                <button type="button" class="btn btn-info btn-sm" id="register_btn">Register</button>
+                                            </form>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
 	<footer style="padding-bottom:30px">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <div class="text-center center-block">
