@@ -93,6 +93,8 @@ function loadLoggedInUser (username) {
         <li><a id="login" href="/logout">Logout</a></li>
     `;
     loginArea.innerHTML=`
+    <div style="margin-top:0px" id="login_area">
+    </div>
     `;
     footer.innerHTML=`
     <footer id="footer" style="margin-top:0px">
