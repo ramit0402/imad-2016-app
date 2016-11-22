@@ -4,6 +4,7 @@ function loadLoginForm () {
         <h3>Login/Register</h3>
         <label for="username" class="col-sm-3 control-label">Username</label>
         <input type="text" class="form-control" id="username"  />
+        <br/>
         <label for="password" class="col-sm-3 control-label">Password</label>
         <input type="password" class="form-control" id="password" />
         <br/><br/>
