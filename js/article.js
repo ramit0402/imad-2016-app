@@ -1,3 +1,4 @@
+// Eg: coco98.imad.hasura-app.io/articles/article-one will result in article-one
 var currentArticleTitle = window.location.pathname.split('/')[2];
 
 function loadCommentForm () {
@@ -25,7 +26,7 @@ function loadCommentForm () {
                     document.getElementById('comment_text').value = '';
                     loadComments();    
                 } else {
-                    alert('Error!! Could not submit comment');
+                    alert('Error! Could not submit comment');
                 }
                 submit.value = 'Submit';
           }
