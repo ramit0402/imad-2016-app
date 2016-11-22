@@ -1,6 +1,6 @@
 function loadLoginForm () {
     var loginHtml = `
-    <div class="col-md-4 col-md-offset-3">
+    <div class="col-md-4 col-md-offset-3" style="margin-top:100px">
         <h3>Login/Register</h3>
         <label for="username" class="col-sm-3 control-label">Username</label>
         <input type="text" class="form-control" id="username"  />
