@@ -95,7 +95,7 @@ function loadLoggedInUser (username) {
     loginArea.innerHTML=`
     `;
     footer.innerHTML=`
-    <footer id="footer" style="margin-top:300px">
+    <footer id="footer" style="margin-top:0px">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <div class="text-center center-block">
             <p class="txt-railway">- BLOGS ONLINE -</p>
