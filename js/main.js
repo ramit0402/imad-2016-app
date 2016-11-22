@@ -7,7 +7,7 @@ function loadLoginForm () {
         <br/>
         <label for="password" class="col-sm-3 control-label">Password</label>
         <input type="password" class="form-control" id="password" />
-        <br/><br/>
+        <br/>
         <input type="submit" id="login_btn" value="Login" />
         <input type="submit" id="register_btn" value="Register" />
         </div>
