@@ -13,6 +13,7 @@ var config = {
     port: '5432',
     password: process.env.DB_PASSWORD
 };
+config=testdb();
 
 var app = express();
 app.use(morgan('combined'));
@@ -21,6 +22,20 @@ app.use(session({
     secret: 'someRandomSecretValue',
     cookie: { maxAge: 1000 * 60 * 60 * 24 * 30}
 }));
+
+var users = [];
+var comments = [];
+var posts = [];
+var counter;
+var pool = new Pool(config);
+
+get_posts();
+get_comments();
+get_users();
+
+app.get('/posts', function (req, res) {
+    res.redirect('/');
+});
 
 function createTemplateArticle(data) {
     
