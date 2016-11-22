@@ -103,7 +103,7 @@ function loadLoggedInUser (username) {
         <li><a id="login" href="/logout">Logout</a></li>
     `;
     loginArea.innerHTML=`
-    <footer style="margin-top:900px">
+    <footer style="margin-top:300px">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <div class="text-center center-block">
             <p class="txt-railway">- BLOGS ONLINE -</p>
