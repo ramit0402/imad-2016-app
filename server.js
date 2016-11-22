@@ -37,6 +37,107 @@ app.get('/posts', function (req, res) {
     res.redirect('/');
 });
 
+function escapeHtml(unsafe) {
+    return unsafe
+         .replace(/&/g, "&amp;")
+         .replace(/</g, "&lt;")
+         .replace(/>/g, "&gt;")
+         .replace(/"/g, "&quot;")
+         .replace(/'/g, "&#039;");
+}
+
+
+
+app.get('/submit-comment/:postID', function(req, res){
+    if (req.session && req.session.auth && req.session.auth.userId) {
+        var postID = req.params.postID;
+        var author = req.session.username;
+        var content = escapeHtml(req.query.content);
+        
+        /* Write to database */
+        var query = "INSERT INTO comments (post_id, comment_author, comment_content, comment_date) values ('"+postID+"','"+author+"','"+content+"',now());";
+        pool.query(query, function(err, results){
+            if (err){
+                res.status(403).send(err.toString());
+            } else {
+                res.send(author);
+            }
+        });
+    }
+});
+
+
+app.get('/posts/:postID', function (req, res) {
+    get_posts();
+    get_comments();
+    get_users();
+    res.send(postTemplate(req.params.postID));
+});
+
+
+
+app.get('/user/:username', function(req, res){
+    var username = req.params.username;
+    get_comments();
+    var htmlTemplate=`
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title>IMAD Blog WebApp</title>
+            <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+            <link href="css/clean-blog.min.css" rel="stylesheet">
+            <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+            <link href='//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+            <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+            <link href="../css/modal.css" rel="stylesheet">
+            <link href="../css/post-comment.css" rel="stylesheet">
+        </head>
+        <body>
+    `;
+    for (var i = 0; i < comments.length; i++) {
+                if (comments[i].comment_author === username){ 
+                  htmlTemplate = htmlTemplate +  `
+                   <div class="col-sm-8 col-sm-offset-2">
+                        <div class="panel panel-white post panel-shadow">
+                            <div class="post-heading">
+                                <div class="pull-left image">
+                                    <a href=/user/`+comments[i].comment_author+`><img src="http://bootdey.com/img/Content/user_`+findUser(comments[i].comment_author).displaypic+`.jpg" class="img-circle avatar" alt="user profile image"></a>
+                                </div>
+                                <div class="pull-left meta">
+                                    <div class="title h5">
+                                        <a href=/user/`+comments[i].comment_author+`><b>`+comments[i].comment_author+`</b></a> made a comment.
+                                    </div>
+                                    <h6 class="text-muted time">`+(comments[i].comment_date).toGMTString()+`</h6>
+                                </div>
+                            </div> 
+                            <div class="post-description"> 
+                                <p>`+comments[i].comment_content+`</p>
+                            </div>
+                        </div>
+                    </div>
+                            
+                       ` ;
+                   }
+               }
+
+       htmlTemplate = htmlTemplate + `
+</body>
+       	            <script src="vendor/jquery/jquery.min.js"></script>
+            <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+            <script src="js/clean-blog.min.js"></script>
+            <script src="../main.js"></script>
+            <script src="../article.js"></script>
+        </body>
+        </html>
+       `;
+          res.send(htmlTemplate);
+});	
+
+
+
 function createTemplateArticle(data) {
     
     var title = data.title;
