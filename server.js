@@ -13,7 +13,6 @@ var config = {
     port: '5432',
     password: process.env.DB_PASSWORD
 };
-config=testdb();
 
 var app = express();
 app.use(morgan('combined'));
@@ -22,261 +21,6 @@ app.use(session({
     secret: 'someRandomSecretValue',
     cookie: { maxAge: 1000 * 60 * 60 * 24 * 30}
 }));
-
-var users = [];
-var comments = [];
-var posts = [];
-var counter;
-var pool = new Pool(config);
-
-get_posts();
-get_comments();
-get_users();
-
-app.get('/posts', function (req, res) {
-    res.redirect('/');
-});
-
-function escapeHtml(unsafe) {
-    return unsafe
-         .replace(/&/g, "&amp;")
-         .replace(/</g, "&lt;")
-         .replace(/>/g, "&gt;")
-         .replace(/"/g, "&quot;")
-         .replace(/'/g, "&#039;");
-}
-
-
-
-app.get('/submit-comment/:postID', function(req, res){
-    if (req.session && req.session.auth && req.session.auth.userId) {
-        var postID = req.params.postID;
-        var author = req.session.username;
-        var content = escapeHtml(req.query.content);
-        
-        /* Write to database */
-        var query = "INSERT INTO comments (post_id, comment_author, comment_content, comment_date) values ('"+postID+"','"+author+"','"+content+"',now());";
-        pool.query(query, function(err, results){
-            if (err){
-                res.status(403).send(err.toString());
-            } else {
-                res.send(author);
-            }
-        });
-    }
-});
-
-
-app.get('/posts/:postID', function (req, res) {
-    get_posts();
-    get_comments();
-    get_users();
-    res.send(postTemplate(req.params.postID));
-});
-
-
-
-app.get('/user/:username', function(req, res){
-    var username = req.params.username;
-    get_comments();
-    var htmlTemplate=`
-    <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="utf-8">
-            <meta http-equiv="X-UA-Compatible" content="IE=edge">
-            <meta name="viewport" content="width=device-width, initial-scale=1">
-            <title>IMAD Blog WebApp</title>
-            <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-            <link href="css/clean-blog.min.css" rel="stylesheet">
-            <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-            <link href='//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-            <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-            <link href="../css/modal.css" rel="stylesheet">
-            <link href="../css/post-comment.css" rel="stylesheet">
-        </head>
-        <body>
-    `;
-    for (var i = 0; i < comments.length; i++) {
-                if (comments[i].comment_author === username){ 
-                  htmlTemplate = htmlTemplate +  `
-                   <div class="col-sm-8 col-sm-offset-2">
-                        <div class="panel panel-white post panel-shadow">
-                            <div class="post-heading">
-                                <div class="pull-left image">
-                                    <a href=/user/`+comments[i].comment_author+`><img src="http://bootdey.com/img/Content/user_`+findUser(comments[i].comment_author).displaypic+`.jpg" class="img-circle avatar" alt="user profile image"></a>
-                                </div>
-                                <div class="pull-left meta">
-                                    <div class="title h5">
-                                        <a href=/user/`+comments[i].comment_author+`><b>`+comments[i].comment_author+`</b></a> made a comment.
-                                    </div>
-                                    <h6 class="text-muted time">`+(comments[i].comment_date).toGMTString()+`</h6>
-                                </div>
-                            </div> 
-                            <div class="post-description"> 
-                                <p>`+comments[i].comment_content+`</p>
-                            </div>
-                        </div>
-                    </div>
-                            
-                       ` ;
-                   }
-               }
-
-       htmlTemplate = htmlTemplate + `
-</body>
-       	            <script src="vendor/jquery/jquery.min.js"></script>
-            <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-            <script src="js/clean-blog.min.js"></script>
-            <script src="../main.js"></script>
-            <script src="../article.js"></script>
-        </body>
-        </html>
-       `;
-          res.send(htmlTemplate);
-});	
-
-
-app.get('/login.html', function(req, res){
-    res.sendFile(path.join(__dirname, 'ui', 'login.html'));
-});
-
-app.post('/login', function (req, res) {
-   var username = req.body.username;
-   var password = req.body.password;
-   
-   pool.query('SELECT * FROM "users" WHERE username = $1', [username], function (err, result) {
-      if (err) {
-          res.status(500).send(err.toString());
-      } else {
-          if (result.rows.length === 0) {
-              res.status(403).send('username/password is invalid');
-          } else {
-              // Match the password
-              var dbString = result.rows[0].password;
-              var salt = dbString.split('$')[2];
-              var hashedPassword = hash(password, salt); // Creating a hash based on the password submitted and the original salt
-              if (hashedPassword === dbString) {
-                
-                // Set the session
-                req.session.auth = {userId: result.rows[0].id};
-                req.session.username = req.body.username;
-                console.log(req.session.auth);
-                console.log(req.session.username);
-                // set cookie with a session id
-                // internally, on the server side, it maps the session id to an object
-                // { auth: {userId }}
-                
-                res.send('credentials correct!');
-                
-              } else {
-                res.status(403).send('username/password is invalid');
-              }
-          }
-      }
-   });
-});
-
-app.get('/check-login', function (req, res) {
-   if (req.session && req.session.auth && req.session.auth.userId) {
-       // Load the user object
-       pool.query('SELECT * FROM "users" WHERE id = $1', [req.session.auth.userId], function (err, result) {
-           if (err) {
-              res.status(500).send(err.toString());
-           } else {
-              res.send(result.rows[0].username);    
-           }
-       });
-   } else {
-       res.status(400).send('You are not logged in');
-   }
-});
-
-app.get('/logout', function (req, res) {
-   delete req.session.auth;
-   delete req.session.username;
-   res.send('<html><body>Logged out!<br/><br/><a href="/">Back to home</a></body></html>');
-});
-
-
-// Make this into a app.get !!!
-function get_comments(){
-     pool.query('SELECT * from comments ORDER BY comment_id desc', function(err, results){
-        if (err){
-            return(err.toString());
-        } else {
-                comments = results.rows;
-        }
-    });
-}
-
-function get_posts(){
-    pool.query('SELECT * from posts ORDER BY post_id DESC', function(err, results){
-        if (err){
-            return(err.toString());
-        } else {
-            if (results.rows.length === 0 ) {
-                return(err.toString());
-            } else {
-                posts = results.rows;
-            }
-        }
-    });
-}
-
-app.get('/getUser/:username', function (req, res) {
-   var username = req.params.username;
-   pool.query("SELECT username, displaypic FROM users WHERE username=$1", [username], function (err, result) {
-      if (err) {
-          res.status(500).send(err.toString());
-      } else {
-          res.send(result.rows[0]);
-      }
-   });
-});
-
-function get_users() {
-    pool.query('SELECT username, displaypic from users ', function(err, results){
-        if (err){
-            return(err.toString());
-        } else {
-            if (results.rows.length === 0 ) {
-                // return(err.toString());
-            } else {
-                users = results.rows;
-            }
-        }
-    });
-}
-
-function findUser(username) {
-    get_users();
-    console.log("username = "+username);
-    var found = null;
-    for (var i = 0; i < users.length; i++) {
-        var element = users[i];
-
-        if (element.username == username) {
-           found = element;
-       } 
-    }
-    console.log(found);
-    return found;
-}
-
-function testdb(){
-  var config = {
-    user: 'ramit0402',
-    database: 'ramit0402',
-    host: 'db.imad.hasura-app.io',
-    port: '5432',
-    password: process.env.DB_PASSWORD
-    ssl: true
-  };
-  return config;
-}
-
-
 
 function createTemplateArticle(data) {
     
@@ -294,18 +38,13 @@ function createTemplateArticle(data) {
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-
 	<title>Home-Blog</title>
-
 	<!--BOOTSTRAP CSS-->
 	<link href="css/bootstrap.css" rel="stylesheet">
-
 	<!--CUSTOM CSS-->
 	<link href="css/style-article.css" rel="stylesheet">
-
 	<!--JQUERY JAVASCRIPT-->
 	<script src="js/jquery.js"></script>
-
 	<!--BOOTSTRAP JAVASCRIPT-->
 	<script src="js/bootstrap.js"></script>
 </head>
@@ -323,7 +62,6 @@ function createTemplateArticle(data) {
 				</button>
 				<a class="navbar-brand" href="/"><img src="images/logo_blog.png" alt="LOGO" ></a>
 			</div>
-
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
@@ -348,7 +86,6 @@ function createTemplateArticle(data) {
 		</div><!-- /.container-fluid -->
 	</nav>
 	<!--NAVBAR END-->
-
 	<!--CONATINER START-->
 	<div class="container col-md-8 col-md-offset-2">
 		<h3>${heading}</h3>
@@ -376,18 +113,13 @@ function createTemplateSection(data) {
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-
 	<title>Home-Blog</title>
-
 	<!--BOOTSTRAP CSS-->
 	<link href="css/bootstrap.css" rel="stylesheet">
-
 	<!--CUSTOM CSS-->
 	<link href="css/style.css" rel="stylesheet">
-
 	<!--JQUERY JAVASCRIPT-->
 	<script src="js/jquery.js"></script>
-
 	<!--BOOTSTRAP JAVASCRIPT-->
 	<script src="js/bootstrap.js"></script>
 </head>
@@ -405,7 +137,6 @@ function createTemplateSection(data) {
 				</button>
 				<a class="navbar-brand" href="/"><img src="images/logo_blog.png" alt="LOGO" ></a>
 			</div>
-
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
@@ -430,7 +161,6 @@ function createTemplateSection(data) {
 		</div><!-- /.container-fluid -->
 	</nav>
 	<!--NAVBAR END-->
-
 	<!--CONATINER START-->
 	${content}
 	<!--CONATINER END-->
