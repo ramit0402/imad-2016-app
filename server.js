@@ -275,6 +275,9 @@ function testdb(){
   };
   return config;
 }
+
+
+
 function createTemplateArticle(data) {
     
     var title = data.title;
