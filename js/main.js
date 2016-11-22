@@ -3,7 +3,7 @@ function loadLoginForm () {
     <div class="col-md-5 col-md-offset-3">
         <h3>Login/Register</h3>
         <label for="username" class="col-sm-3 control-label">Username</label>
-        <input type="text" id="username" placeholder="username" />
+        <input type="text" id="username"  />
         <input type="password" id="password" />
         <br/><br/>
         <input type="submit" id="login_btn" value="Login" />
