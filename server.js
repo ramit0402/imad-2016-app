@@ -70,7 +70,7 @@ function createTemplateArticle(data) {
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Browse <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="../sec/trending"><span class="btn-sm glyphicon glyphicon-headphones" aria-hidden="true"></span>    Trending</a></li>
+							<li><a href="/sec/trending"><span class="btn-sm glyphicon glyphicon-headphones" aria-hidden="true"></span>    Trending</a></li>
 							<li><a href="/sec/trending"><span class="btn-sm glyphicon glyphicon-headphones" aria-hidden="true"></span>    Featured </a></li>
 							<li><a href="/sec/trending"><span class="btn-sm glyphicon glyphicon-headphones" aria-hidden="true"></span>    New Articles</a></li>
 							<li><a href="/sec/trending"><span class="btn-sm glyphicon glyphicon-headphones" aria-hidden="true"></span>    This Weeks Special</a></li>
@@ -98,6 +98,17 @@ function createTemplateArticle(data) {
       <div id="comments">
         <center>Loading comments...</center>
       </div>
+      <footer id="footer">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+            <div class="text-center center-block"  style="margin-top:200px">
+                <p class="txt-railway">- BLOGS ONLINE -</p>
+                <a href="https://github.com/ramit0402"><i class="fa fa-github" style="font-size:36px"></i></a>
+                <a href="https://www.facebook.com/ramitlegend"><i class="fa fa-facebook-official" style="font-size:36px"></i></a>
+                <a href="https://plus.google.com/u/1/+RamitMuralidharan02"><i class="fa fa-google-plus-official" style="font-size:36px"></i></a>
+                <a href="https://twitter.com/ramit1996"><i class="fa fa-twitter" style="font-size:36px"></i></a>
+                <a href="mailto:ramit0402@gmail.com"><i class="fa fa-google" style="font-size:36px"></i></a>
+            </div>
+        </footer>
 	</div>
 	
 	<!--CONATINER END-->
@@ -172,7 +183,7 @@ function createTemplateSection(data) {
     	${content}
     	<footer id="footer">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-            <div class="text-center center-block"  style="margin-top:700px">
+            <div class="text-center center-block"  style="margin-top:200px">
                 <p class="txt-railway">- BLOGS ONLINE -</p>
                 <a href="https://github.com/ramit0402"><i class="fa fa-github" style="font-size:36px"></i></a>
                 <a href="https://www.facebook.com/ramitlegend"><i class="fa fa-facebook-official" style="font-size:36px"></i></a>
