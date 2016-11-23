@@ -93,7 +93,7 @@ function createTemplateArticle(data) {
         <div>${content}</div>
 	</div>
 	<hr/>
-      <h4 style="margin-top:1000px">Comments</h4>
+      <h4 style="margin-top:3000px">Comments</h4>
       <div id="comment_form">
       </div>
       <div id="comments">
