@@ -90,7 +90,7 @@ function loadLoggedInUser (username) {
     var log = document.getElementById('login');
     var footer = document.getElementById('footer');
     log.innerHTML = `
-        <li><a id="login" href="/logout">Logout</a></li>
+        <li><a style="color:#727272; text-decoration: none;" id="login" href="/logout">Logout</a></li>
     `;
     loginArea.innerHTML=`
     <div style="margin-top:0px" id="login_area">
