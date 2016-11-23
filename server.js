@@ -67,7 +67,6 @@ function createTemplateArticle(data) {
 				<ul class="nav navbar-nav">
 					<!--<li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>-->----
 					<li><a href="/">Home</a></li>
-					<li><a href="#articleSection">My Articles</a></li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Browse <span class="caret"></span></a>
 						<ul class="dropdown-menu">
@@ -80,7 +79,7 @@ function createTemplateArticle(data) {
 							<li><a href="#peopleSection"><span class="btn-sm glyphicon glyphicon-menu-right" aria-hidden="true"></span>    People</a></li>
 						</ul>
 					</li>
-					<li><a href="#aboutSection">About Me</a></li>
+					<li><a href="ui/about.html">About Me</a></li>
 				</ul
 			</div><!-- /.navbar-collapse -->
 		</div><!-- /.container-fluid -->
