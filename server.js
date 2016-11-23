@@ -95,17 +95,6 @@ function createTemplateArticle(data) {
 	</div>
 	<!--CONATINER END-->
 	<script type="text/javascript" src="/ui/article.js"></script>
-	<footer id="footer">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <div class="text-center center-block"  style="margin-top:100px">
-            <p class="txt-railway">- BLOGS ONLINE -</p>
-            <a href="https://github.com/ramit0402"><i class="fa fa-github" style="font-size:36px"></i></a>
-            <a href="https://www.facebook.com/ramitlegend"><i class="fa fa-facebook-official" style="font-size:36px"></i></a>
-            <a href="https://plus.google.com/u/1/+RamitMuralidharan02"><i class="fa fa-google-plus-official" style="font-size:36px"></i></a>
-            <a href="https://twitter.com/ramit1996"><i class="fa fa-twitter" style="font-size:36px"></i></a>
-            <a href="mailto:ramit0402@gmail.com"><i class="fa fa-google" style="font-size:36px"></i></a>
-        </div>
-    </footer>
 </body>
 </html>`; 
     return htmlTemplate;
@@ -176,17 +165,6 @@ function createTemplateSection(data) {
 	${content}
 	<!--CONATINER END-->
 	<script type="text/javascript" src="/ui/article.js"></script>
-	<footer id="footer">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <div class="text-center center-block"  style="margin-top:100px">
-            <p class="txt-railway">- BLOGS ONLINE -</p>
-            <a href="https://github.com/ramit0402"><i class="fa fa-github" style="font-size:36px"></i></a>
-            <a href="https://www.facebook.com/ramitlegend"><i class="fa fa-facebook-official" style="font-size:36px"></i></a>
-            <a href="https://plus.google.com/u/1/+RamitMuralidharan02"><i class="fa fa-google-plus-official" style="font-size:36px"></i></a>
-            <a href="https://twitter.com/ramit1996"><i class="fa fa-twitter" style="font-size:36px"></i></a>
-            <a href="mailto:ramit0402@gmail.com"><i class="fa fa-google" style="font-size:36px"></i></a>
-        </div>
-    </footer>
 </body>
 </html>`; 
     return htmlTemplate;
