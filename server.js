@@ -184,7 +184,7 @@ function createTemplateSection(data) {
     	<footer id="footer" >
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
             <div class="text-center center-block" style="padding-top:200px" >
-                <p class="txt-railway">- BLOGS ONLINE -</p>
+                <p class="txt-railway" style="padding-top:200px">- BLOGS ONLINE -</p>
                 <a href="https://github.com/ramit0402"><i class="fa fa-github" style="font-size:36px"></i></a>
                 <a href="https://www.facebook.com/ramitlegend"><i class="fa fa-facebook-official" style="font-size:36px"></i></a>
                 <a href="https://plus.google.com/u/1/+RamitMuralidharan02"><i class="fa fa-google-plus-official" style="font-size:36px"></i></a>
