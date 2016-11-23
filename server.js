@@ -66,8 +66,8 @@ function createTemplateArticle(data) {
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<!--<li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>-->----
-					<li><a id="home" href="/">Home</a></li>
-					<li><a id="article" href="#articleSection">My Articles</a></li>
+					<li><a href="/">Home</a></li>
+					<li><a href="#articleSection">My Articles</a></li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Browse <span class="caret"></span></a>
 						<ul class="dropdown-menu">
@@ -81,10 +81,7 @@ function createTemplateArticle(data) {
 						</ul>
 					</li>
 					<li><a href="#aboutSection">About Me</a></li>
-				</ul>
-				<ul class="nav navbar-nav navbar-right">
-					<li><a id="login" href="#loginSection">Login/Register</a></li>
-				</ul>
+				</ul
 			</div><!-- /.navbar-collapse -->
 		</div><!-- /.container-fluid -->
 	</nav>
