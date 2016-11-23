@@ -179,7 +179,7 @@ function createTemplateSection(data) {
 	</nav>
 	<!--NAVBAR END-->
 	<!--CONATINER START-->
-	<div>
+	<div class="container col-md-10 col-md-offset-1" style="padding-top:200px;text-align:center">
     	${content}
     	<footer id="footer">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
