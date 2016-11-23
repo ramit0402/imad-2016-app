@@ -82,6 +82,9 @@ function createTemplateArticle(data) {
 					</li>
 					<li><a href="#aboutSection">About Me</a></li>
 				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a id="login" href="#loginSection">Login/Register</a></li>
+				</ul>
 			</div><!-- /.navbar-collapse -->
 		</div><!-- /.container-fluid -->
 	</nav>
