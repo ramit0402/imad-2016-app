@@ -91,9 +91,11 @@ function createTemplateArticle(data) {
         <div>${date.toDateString()}</div>
         <hr/>
         <div>${content}</div>
-	</div>
+	</div>`;
+	
+	htmlTemplate =htmlTemplate+`
 	<hr/>
-      <h4 style="margin-top:3000px">Comments</h4>
+      <h4>Comments</h4>
       <div id="comment_form">
       </div>
       <div id="comments">
