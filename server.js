@@ -181,10 +181,10 @@ function createTemplateSection(data) {
 	<!--CONATINER START-->
 	<div class="container col-md-10 col-md-offset-1" style="padding-top:200px;text-align:center">
     	${content}
-    	<footer id="footer">
+    	<footer id="footer" style="padding-top:200px">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-            <div class="text-center center-block"  >
-                <p class="txt-railway" style="margin-top:200px">- BLOGS ONLINE -</p>
+            <div class="text-center center-block"  style="padding-top:200px">
+                <p class="txt-railway" style="padding-top:200px">- BLOGS ONLINE -</p>
                 <a href="https://github.com/ramit0402"><i class="fa fa-github" style="font-size:36px"></i></a>
                 <a href="https://www.facebook.com/ramitlegend"><i class="fa fa-facebook-official" style="font-size:36px"></i></a>
                 <a href="https://plus.google.com/u/1/+RamitMuralidharan02"><i class="fa fa-google-plus-official" style="font-size:36px"></i></a>
