@@ -70,17 +70,17 @@ function createTemplateArticle(data) {
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Browse <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="#trendingSection"><span class="btn-sm glyphicon glyphicon-headphones" aria-hidden="true"></span>    Trending</a></li>
-							<li><a href="#featuredSection"><span class="btn-sm glyphicon glyphicon-headphones" aria-hidden="true"></span>    Featured </a></li>
-							<li><a href="#newSection"><span class="btn-sm glyphicon glyphicon-headphones" aria-hidden="true"></span>    New Articles</a></li>
-							<li><a href="#specialSection"><span class="btn-sm glyphicon glyphicon-headphones" aria-hidden="true"></span>    This Weeks Special</a></li>
-							<li><a href="#blogSection"><span class="btn-sm glyphicon glyphicon-headphones" aria-hidden="true"></span>    All Blogs</a></li>
+							<li><a href="sec/trending"><span class="btn-sm glyphicon glyphicon-headphones" aria-hidden="true"></span>    Trending</a></li>
+							<li><a href="sec/trending"><span class="btn-sm glyphicon glyphicon-headphones" aria-hidden="true"></span>    Featured </a></li>
+							<li><a href="sec/trending"><span class="btn-sm glyphicon glyphicon-headphones" aria-hidden="true"></span>    New Articles</a></li>
+							<li><a href="sec/trending"><span class="btn-sm glyphicon glyphicon-headphones" aria-hidden="true"></span>    This Weeks Special</a></li>
+							<li><a href="sec/trending"><span class="btn-sm glyphicon glyphicon-headphones" aria-hidden="true"></span>    All Blogs</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="#peopleSection"><span class="btn-sm glyphicon glyphicon-menu-right" aria-hidden="true"></span>    People</a></li>
+							<li><a href="sec/trending"><span class="btn-sm glyphicon glyphicon-menu-right" aria-hidden="true"></span>    People</a></li>
 						</ul>
 					</li>
 					<li><a href="ui/about.html">About Me</a></li>
-				</ul
+				</ul>
 			</div><!-- /.navbar-collapse -->
 		</div><!-- /.container-fluid -->
 	</nav>
@@ -140,21 +140,20 @@ function createTemplateSection(data) {
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<!--<li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>-->----
-					<li><a id="home" href="/">Home</a></li>
-					<li><a id="article" href="#articleSection">My Articles</a></li>
+					<li><a href="/">Home</a></li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Browse <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="#trendingSection"><span class="btn-sm glyphicon glyphicon-headphones" aria-hidden="true"></span>    Trending</a></li>
-							<li><a href="#featuredSection"><span class="btn-sm glyphicon glyphicon-headphones" aria-hidden="true"></span>    Featured </a></li>
-							<li><a href="#newSection"><span class="btn-sm glyphicon glyphicon-headphones" aria-hidden="true"></span>    New Articles</a></li>
-							<li><a href="#specialSection"><span class="btn-sm glyphicon glyphicon-headphones" aria-hidden="true"></span>    This Weeks Special</a></li>
-							<li><a href="#blogSection"><span class="btn-sm glyphicon glyphicon-headphones" aria-hidden="true"></span>    All Blogs</a></li>
+							<li><a href="sec/trending"><span class="btn-sm glyphicon glyphicon-headphones" aria-hidden="true"></span>    Trending</a></li>
+							<li><a href="sec/trending"><span class="btn-sm glyphicon glyphicon-headphones" aria-hidden="true"></span>    Featured </a></li>
+							<li><a href="sec/trending"><span class="btn-sm glyphicon glyphicon-headphones" aria-hidden="true"></span>    New Articles</a></li>
+							<li><a href="sec/trending"><span class="btn-sm glyphicon glyphicon-headphones" aria-hidden="true"></span>    This Weeks Special</a></li>
+							<li><a href="sec/trending"><span class="btn-sm glyphicon glyphicon-headphones" aria-hidden="true"></span>    All Blogs</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="#peopleSection"><span class="btn-sm glyphicon glyphicon-menu-right" aria-hidden="true"></span>    People</a></li>
+							<li><a href="sec/trending"><span class="btn-sm glyphicon glyphicon-menu-right" aria-hidden="true"></span>    People</a></li>
 						</ul>
 					</li>
-					<li><a href="#aboutSection">About Me</a></li>
+					<li><a href="ui/about.html">About Me</a></li>
 				</ul>
 			</div><!-- /.navbar-collapse -->
 		</div><!-- /.container-fluid -->
