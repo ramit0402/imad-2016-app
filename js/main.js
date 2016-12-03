@@ -1,7 +1,12 @@
 function loadLoginForm () {
     var loginHtml = `
-    <div class="col-md-4 col-md-offset-4" style="border:1px solid black; border-radius:20px; padding:10px" >
-        <h3>Login/Register</h3>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Login</h4>
+                </div>
         <label for="username" class="col-sm-3 control-label">Username</label>
         <input type="text" class="form-control" id="username"  />
         <br/>
@@ -16,6 +21,9 @@ function loadLoginForm () {
                     <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
         </div>
+         </div>
+        </div>
+    </div>
         `;
     document.getElementById('login_area').innerHTML = loginHtml;
     
