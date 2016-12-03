@@ -8,7 +8,7 @@ function loadLoginForm () {
                     <h4 class="modal-title" id="myModalLabel">Login</h4>
                 </div>
                 <label for="username" class="col-sm-3 control-label">Username</label>
-                <input type="text" class="form-control col-md-2" id="username"  />
+                <input style="padding:0px 10px"type="text" class="form-control" id="username"  />
                 <br/>
                 <label for="password" class="col-sm-3 control-label">Password</label>
                 <input type="password" class="form-control" id="password" />
