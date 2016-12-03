@@ -14,7 +14,7 @@ function loadLoginForm () {
                 <input style="margin:0px 15px ; width:90%" type="password" class="form-control" id="password" />
                 <br/>
                 <div class="modal-footer">
-                    <input type="submit" style="margin-left:100px" class="btn btn-primary" id="login_btn" value="Login" />
+                    <input type="submit" style="margin-left:70%" class="btn btn-primary" id="login_btn" value="Login" />
                     <input type="submit" class="btn btn-primary" id="register_btn" value="Register" />
                 </div>
             </div>
