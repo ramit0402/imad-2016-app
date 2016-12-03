@@ -11,6 +11,10 @@ function loadLoginForm () {
         <input type="submit" style="margin-left:100px" class="btn btn-default" id="login_btn" value="Login" />
         <input type="submit" class="btn btn-default" id="register_btn" value="Register" />
         </br>
+        <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
         </div>
         `;
     document.getElementById('login_area').innerHTML = loginHtml;
