@@ -14,8 +14,6 @@ function loadLoginForm () {
                 <input type="password" class="form-control" id="password" />
                 <br/>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
                     <input type="submit" style="margin-left:100px" class="btn btn-primary" id="login_btn" value="Login" />
                     <input type="submit" class="btn btn-primary" id="register_btn" value="Register" />
                 </div>
