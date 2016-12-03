@@ -7,21 +7,19 @@ function loadLoginForm () {
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="myModalLabel">Login</h4>
                 </div>
-        <label for="username" class="col-sm-3 control-label">Username</label>
-        <input type="text" class="form-control" id="username"  />
-        <br/>
-        <label for="password" class="col-sm-3 control-label">Password</label>
-        <input type="password" class="form-control" id="password" />
-        <br/>
-        <input type="submit" style="margin-left:100px" class="btn btn-default" id="login_btn" value="Login" />
-        <input type="submit" class="btn btn-default" id="register_btn" value="Register" />
-        </br>
-        <div class="modal-footer">
+                <label for="username" class="col-sm-3 control-label">Username</label>
+                <input type="text" class="form-control" id="username"  />
+                <br/>
+                <label for="password" class="col-sm-3 control-label">Password</label>
+                <input type="password" class="form-control" id="password" />
+                <br/>
+                <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary">Save changes</button>
+                    <input type="submit" style="margin-left:100px" class="btn btn-primary" id="login_btn" value="Login" />
+                    <input type="submit" class="btn btn-primary" id="register_btn" value="Register" />
                 </div>
-        </div>
-         </div>
+            </div>
         </div>
     </div>
         `;
